@@ -11,14 +11,14 @@ app.get('/webhook', (req, res) => {
   res.send('Hello world');
   //
   // // verify
-  // if (req.query['hub.mode'] === 'subscribe' &&
-  //     req.query['hub.verify_token'] === process.env.VALIDATION_TOKEN) {
-  //   console.log("Validating webhook works");
-  //   res.status(200).send(req.query['hub.challenge']);
-  // } else {
-  //   console.error("Failed validation. Make sure the validation tokens match.");
-  //   res.sendStatus(403);
-  // }
+  if (req.query['hub.mode'] === 'subscribe' &&
+      req.query['hub.verify_token'] === process.env.VALIDATION_TOKEN) {
+    console.log("Validating webhook works");
+    res.status(200).send(req.query['hub.challenge']);
+  } else {
+    console.error("Failed validation. Make sure the validation tokens match.");
+    res.sendStatus(403);
+  }
 
 });
 
