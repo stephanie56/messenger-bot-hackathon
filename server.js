@@ -7,10 +7,7 @@ app.use(express.static('public'));
 
 
 app.get('/webhook', (req, res) => {
-  // test
-  // res.send('Hello world');
-  //
-  // // verify
+  // // verify webhook 
   if (req.query['hub.mode'] === 'subscribe' &&
       req.query['hub.verify_token'] === process.env.VERIFY_TOKEN) {
     console.log("Validating webhook works");
